@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 8553f46477247ef42ad2a1b0954393b0
+  - enabled: 1
+    path: Assets/Scenes/GolfScene.unity
+    guid: 75a9f4dd83c481c48bce96ead20c225f
+  - enabled: 1
+    path: Assets/Scenes/BowlingScene.unity
+    guid: 7725c10f89320b44bba188542491769c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

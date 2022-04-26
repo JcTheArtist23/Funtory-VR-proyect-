@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
-{   
+{
+    private bool canGetCoin;
+
     [Header("VICTORY")]
     public static int _numTotalBolos;       //Número de bolos tirados
     public int numTotalBolos;               //Número de bolos tirados
@@ -43,13 +46,14 @@ public class GameController : MonoBehaviour
         
         actualLevel = 1;
         allLevelsEnd = false;
+        bool canGetCoin = true;
+
+        nextLevelUI.SetActive(false);
         victoryUI.SetActive(false);
     }
 
     private void Update()
     {
-        GlobalVariables.canDeleteKeys = false;
-
         numTotalBolos = _numTotalBolos;
 
         if(actualLevel == 1)
@@ -60,37 +64,27 @@ public class GameController : MonoBehaviour
         if(actualLevel == 2)
         {
             level2.SetActive(true);
-            level1.SetActive(false);
             numBolosToWin = numBolosToWin2;
         }
         if(actualLevel == 3)
         {
             level3.SetActive(true);
-            level2.SetActive(false);
             numBolosToWin = numBolosToWin3;
         }
         if(actualLevel == 4)
         {
             level4.SetActive(true);
-            level3.SetActive(false);
             numBolosToWin = numBolosToWin4;
         }
         if(actualLevel == 5)
         {
             level5.SetActive(true);
-            level4.SetActive(false);
             numBolosToWin = numBolosToWin5;
         }
 
         if(numTotalBolos >= numBolosToWin)
         {
             LevelEnd();
-        }
-
-        if(actualLevel > maxLevel)
-        {
-            Victory();
-            actualLevel = maxLevel;
         }
     }
 
@@ -100,16 +94,20 @@ public class GameController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            nextLevelUI.SetActive(false);
-            StartCoroutine("NextLevel");
+            if(actualLevel < maxLevel)
+            {
+                _numTotalBolos = 0;
+                actualLevel++;
+                
+                nextLevelUI.SetActive(false);
+            }
         }
-    }
 
-    private IEnumerator NextLevel()
-    {
-        yield return new WaitForSeconds(0.1f);        
-        _numTotalBolos = 0;
-        actualLevel++;
+        if(actualLevel == maxLevel)
+        {
+            nextLevelUI.SetActive(false);
+            Victory();
+        }
     }
 
     private void Victory()
@@ -119,20 +117,36 @@ public class GameController : MonoBehaviour
 
         GiveCoin();
         GiveSecondMarbble();
+        ReturnToLobby();
     }
 
     private void GiveCoin()
     {
-        GlobalVariables.coins++;
-        GlobalVariables.canSaveCoin = true;
+        if(canGetCoin == true)
+        {
+            GlobalVariables.coins++;
+            GlobalVariables.canSaveCoin = true;
+            canGetCoin = false;
+        }
     }
 
     private void GiveSecondMarbble()
     {
-        if(GlobalVariables.secondMarble = 0)
+        if(GlobalVariables.secondMarble == 0)
         {
             GlobalVariables.secondMarble = 1;
             GlobalVariables.canSaveSecondMarble = true;
+        }
+    }
+
+    private void ReturnToLobby()
+    {
+        if(GlobalVariables.canSaveCoin == false && GlobalVariables.canSaveSecondMarble == false)
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                SceneManager.LoadScene("LobbyScene");
+            }
         }
     }
 }

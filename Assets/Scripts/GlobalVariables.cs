@@ -7,7 +7,7 @@ public class GlobalVariables : MonoBehaviour
     public static bool canDeleteKeys;
 
     [Header("COINS")]
-    public static int coins;                //Numero de monedas que tiene el jugador
+    public static int coins;                    //Numero de monedas que tiene el jugador
 
     [Header("MARBLES")]
     public static int firstMarble;              //0 = No tiene la primera canica / 1 = Tiene la primera canica
@@ -66,7 +66,7 @@ public class GlobalVariables : MonoBehaviour
 
     private void DeleteSaves()
     {
-        if(Input.GetKeyUp(KeyCode.D) && canDeleteKeys == true)
+        if(Input.GetKeyDown(KeyCode.D) && canDeleteKeys == true)
         {
             PlayerPrefs.DeleteAll();
         }

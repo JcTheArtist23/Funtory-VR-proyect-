@@ -11,7 +11,7 @@ public class Teleport : MonoBehaviour
     {
         if(teleport.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("SceneName", LoadSceneMode.Additive);
+            SceneManager.LoadScene("SceneName");
         }
     }
 }

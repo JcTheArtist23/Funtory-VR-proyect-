@@ -42,13 +42,14 @@ public class GameController : MonoBehaviour
         level5.SetActive(false);
         
         actualLevel = 1;
-        levelEnd = false;
         allLevelsEnd = false;
         victoryUI.SetActive(false);
     }
 
     private void Update()
     {
+        GlobalVariables.canDeleteKeys = false;
+
         numTotalBolos = _numTotalBolos;
 
         if(actualLevel == 1)
@@ -59,55 +60,56 @@ public class GameController : MonoBehaviour
         if(actualLevel == 2)
         {
             level2.SetActive(true);
+            level1.SetActive(false);
             numBolosToWin = numBolosToWin2;
         }
         if(actualLevel == 3)
         {
             level3.SetActive(true);
+            level2.SetActive(false);
             numBolosToWin = numBolosToWin3;
         }
         if(actualLevel == 4)
         {
             level4.SetActive(true);
+            level3.SetActive(false);
             numBolosToWin = numBolosToWin4;
         }
         if(actualLevel == 5)
         {
             level5.SetActive(true);
+            level4.SetActive(false);
             numBolosToWin = numBolosToWin5;
         }
 
-        if(numTotalBolos == numBolosToWin)
+        if(numTotalBolos >= numBolosToWin)
         {
             LevelEnd();
         }
 
+        if(actualLevel > maxLevel)
+        {
+            Victory();
+            actualLevel = maxLevel;
+        }
     }
 
     private void LevelEnd()
     {
         nextLevelUI.SetActive(true);
-        levelEnd = true;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             nextLevelUI.SetActive(false);
-            levelEnd = false;
             StartCoroutine("NextLevel");
         }
     }
 
     private IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(0.1f);
-        
+        yield return new WaitForSeconds(0.1f);        
         _numTotalBolos = 0;
         actualLevel++;
-
-        if(actualLevel > maxLevel)
-        {
-            Victory();
-        }
     }
 
     private void Victory()
@@ -116,16 +118,21 @@ public class GameController : MonoBehaviour
         allLevelsEnd = true;
 
         GiveCoin();
-        GiveMarbble();
+        GiveSecondMarbble();
     }
 
     private void GiveCoin()
     {
-
+        GlobalVariables.coins++;
+        GlobalVariables.canSaveCoin = true;
     }
 
-    private void GiveMarbble()
+    private void GiveSecondMarbble()
     {
-        
+        if(GlobalVariables.secondMarble = 0)
+        {
+            GlobalVariables.secondMarble = 1;
+            GlobalVariables.canSaveSecondMarble = true;
+        }
     }
 }

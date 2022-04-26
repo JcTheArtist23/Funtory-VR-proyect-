@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BowlingBall : MonoBehaviour
 {
+    public float generationForce;               //Fuerza que recibe la bola de bolos añl generarse para moverse en la máquina
+
     private Rigidbody rbBall;
 
     private void Awake()
@@ -13,10 +15,10 @@ public class BowlingBall : MonoBehaviour
 
     private void Start()
     {
-
+        rbBall.AddForce(new Vector3(1, 0, 0) * generationForce * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision destruction)
+    private void OnTriggerEnter(Collider destruction)
     {
         if(destruction.gameObject.tag == "DestructionZone")
         {

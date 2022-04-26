@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6866929257544731601}
   - component: {fileID: 4940388812018081502}
   - component: {fileID: 2793124419067495423}
+  - component: {fileID: 5548271007473778290}
   m_Layer: 0
   m_Name: BOLA DE BOLOS - AZUL
   m_TagString: Bola de Bolos
@@ -125,3 +126,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c1e838649572643b7c828b54d938fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationForce: 2350
+--- !u!114 &5548271007473778290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3813698411721293391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

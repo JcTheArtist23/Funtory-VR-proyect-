@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bolo : MonoBehaviour
 {
-    public float destructionTime;
-    public bool isSprawled;
+    public float destructionTime;               //Tiempo que tarda el bolo en destruirse desde que se ha tumbado
+    public bool isSprawled;                     //El bolo se ha tumbado?
 
     private Rigidbody rbBolo;
 
@@ -23,6 +23,7 @@ public class Bolo : MonoBehaviour
     {
         if(isSprawled == true)
         {
+            isSprawled = false;
             StartCoroutine("DestructionBolos");
         }
     }
@@ -42,7 +43,7 @@ public class Bolo : MonoBehaviour
     private IEnumerator DestructionBolos()
     {
         yield return new WaitForSeconds(destructionTime);
-        this.gameObject.SetActive(false);
         GameController._numTotalBolos++;
+        this.gameObject.SetActive(false);
     }
 }

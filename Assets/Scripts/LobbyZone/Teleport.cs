@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
-{   
-    public string sceneName;
-    
-    private void OnTriggerEnter(Collider teleport)
+{
+    public GameObject teleportUI;
+    public GameObject golfScene;
+    public GameObject bowlingScene;
+   
+    private void OnTriggerStay(Collider teleport)
     {
         if(teleport.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("SceneName");
+            teleportUI.SetActive(true);
         }
+        else
+        {
+            teleportUI.SetActive(false);
+        }
+    }
+
+    public void TeleportScene()
+    {
+        SceneManager.LoadScene("SceneName");
     }
 }

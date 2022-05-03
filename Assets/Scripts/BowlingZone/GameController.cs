@@ -36,6 +36,11 @@ public class GameController : MonoBehaviour
     public GameObject nextLevelUI;          //UI que aparece al ganar un nivel
     public GameObject victoryUI;            //UI que aparece al ganar todos los niveles
 
+    [Header("REWARDS")]
+    public GameObject robot;
+    public GameObject coin;
+    public GameObject marbble;
+
     private void Start()
     {
         level1.SetActive(false);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowlingBallsController : MonoBehaviour
+public class BowlingBallsGeneration : MonoBehaviour
 {   
     public GameObject[] bowlingBalls;               //Todas las diferentes tipos de bolas de bolas
     public GameObject bowlingBallsParent;           //GameObject (Parent) dónde se genera la bola de bolos

@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private bool canGetCoin;
+    public bool canGetCoin = false;
+    public bool canGetMarbble = false;
 
     [Header("VICTORY")]
     public static int _numTotalBolos;       //Número de bolos tirados
@@ -33,28 +34,31 @@ public class GameController : MonoBehaviour
     public int maxLevel;                    //Nivel máximo de bolos
 
     [Header("UI")]
-    public GameObject nextLevelUI;          //UI que aparece al ganar un nivel
     public GameObject victoryUI;            //UI que aparece al ganar todos los niveles
 
     [Header("REWARDS")]
     public GameObject robot;
     public GameObject coin;
-    public GameObject marbble;
 
-    private void Start()
+    public GameObject secondMarbble;
+    public Transform marbblePositionGeneration;
+    public GameObject marbbleParent;
+
+    private void Awake()
     {
         level1.SetActive(false);
         level2.SetActive(false);
         level3.SetActive(false);
         level4.SetActive(false);
         level5.SetActive(false);
-        
+
+        victoryUI.SetActive(false);
+    }
+
+    private void Start()
+    {        
         actualLevel = 1;
         allLevelsEnd = false;
-        bool canGetCoin = true;
-
-        nextLevelUI.SetActive(false);
-        victoryUI.SetActive(false);
     }
 
     private void Update()
@@ -91,26 +95,23 @@ public class GameController : MonoBehaviour
         {
             LevelEnd();
         }
+        
+        if(Input.GetKey(KeyCode.F))
+        {
+            Victory();
+        }
+
     }
 
     private void LevelEnd()
     {
-        nextLevelUI.SetActive(true);
-
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(actualLevel < maxLevel)
         {
-            if(actualLevel < maxLevel)
-            {
-                _numTotalBolos = 0;
-                actualLevel++;
-                
-                nextLevelUI.SetActive(false);
-            }
+            _numTotalBolos = 0;
+            actualLevel++;
         }
-
-        if(actualLevel == maxLevel)
+        else if(actualLevel >= maxLevel)
         {
-            nextLevelUI.SetActive(false);
             Victory();
         }
     }
@@ -119,6 +120,9 @@ public class GameController : MonoBehaviour
     {
         victoryUI.SetActive(true);
         allLevelsEnd = true;
+        
+        canGetCoin = true;
+        canGetMarbble = true;
 
         GiveCoin();
         GiveSecondMarbble();
@@ -137,10 +141,15 @@ public class GameController : MonoBehaviour
 
     private void GiveSecondMarbble()
     {
-        if(GlobalVariables.secondMarble == 0)
+        if(canGetMarbble == true)
         {
             GlobalVariables.secondMarble = 1;
             GlobalVariables.canSaveSecondMarble = true;
+
+            GameObject marbble2 = Instantiate(secondMarbble, marbblePositionGeneration.position, marbblePositionGeneration.transform.rotation);
+            marbble2.transform.parent = marbbleParent.transform;
+
+            canGetMarbble = false;
         }
     }
 
@@ -148,10 +157,7 @@ public class GameController : MonoBehaviour
     {
         if(GlobalVariables.canSaveCoin == false && GlobalVariables.canSaveSecondMarble == false)
         {
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                SceneManager.LoadScene("LobbyScene");
-            }
+            //SceneManager.LoadScene("LobbyScene");
         }
     }
 }

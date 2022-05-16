@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4284499778354104046}
   - component: {fileID: 2058548072846832164}
   - component: {fileID: 815427721579319098}
-  - component: {fileID: 815427721579319099}
   - component: {fileID: 6327738416073198946}
+  - component: {fileID: 6146213848239999085}
   m_Layer: 0
   m_Name: BOLO
   m_TagString: Bolo
@@ -100,20 +100,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &815427721579319099
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545378524915438577}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4006323247676551099, guid: c9ab0604e6d0e53478130450197d01e1, type: 3}
 --- !u!114 &6327738416073198946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +114,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructionTime: 2.15
   isSprawled: 0
+--- !u!136 &6146213848239999085
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545378524915438577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.015546653
+  m_Height: 0.09319413
+  m_Direction: 1
+  m_Center: {x: 0.00025469624, y: 0.049817257, z: 0.000014976133}

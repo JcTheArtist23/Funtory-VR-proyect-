@@ -7,7 +7,7 @@ TagManager:
   - Bolo
   - Bola de Bolos
   - DestructionZone
-  - Teleport
+  - AccelerationZone
   layers:
   - Default
   - TransparentFX

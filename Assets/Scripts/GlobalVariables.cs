@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
-    public static bool canDeleteKeys;
+    [Header("CHEATS")]
+    public bool canDeleteKeys;
+    public bool canSeeRewards;
 
     [Header("COINS")]
     public static int coins;                    //Numero de monedas que tiene el jugador
@@ -35,7 +37,7 @@ public class GlobalVariables : MonoBehaviour
         Save();
         DeleteSaves();
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z) && canSeeRewards == true)
         {
             Debug.Log("Coins = " + coins);
             Debug.Log("FirstMarble = " + firstMarble);

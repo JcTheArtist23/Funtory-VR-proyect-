@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BowlingBall : MonoBehaviour
 {
-    public float generationForce;               //Fuerza que recibe la bola de bolos añl generarse para moverse en la máquina
+    public float generationForce;               //Fuerza que recibe la bola de bolos al generarse para moverse en la máquina bolos
+    public float accelerationForce;             //Fuerza que recibe la bola de bolos al estar en la pista de bolos
 
     private Rigidbody rbBall;
 
@@ -23,7 +24,15 @@ public class BowlingBall : MonoBehaviour
         if(destruction.gameObject.tag == "DestructionZone")
         {
             Destroy(this.gameObject);
-            BowlingBallsController.areDestroyed = true;
+            BowlingBallsGeneration.areDestroyed = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider accelerator)
+    {
+        if(accelerator.gameObject.tag == "AccelerationZone")
+        {
+            rbBall.AddForce(new Vector3(-1, 0, 0) * accelerationForce * Time.deltaTime);
         }
     }
 }

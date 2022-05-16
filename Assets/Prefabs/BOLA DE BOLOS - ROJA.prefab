@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationForce: 2350
+  accelerationForce: 500
 --- !u!114 &5890452256382639430
 MonoBehaviour:
   m_ObjectHideFlags: 0

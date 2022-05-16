@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public bool canGetCoin = false;
-    public bool canGetMarbble = false;
+    private bool canGetCoin;
+    private bool canGetMarbble;
 
     [Header("VICTORY")]
     public static int _numTotalBolos;       //Número de bolos tirados
@@ -37,12 +37,13 @@ public class GameController : MonoBehaviour
     public GameObject victoryUI;            //UI que aparece al ganar todos los niveles
 
     [Header("REWARDS")]
-    public GameObject robot;
+    public GameObject statue;
     public GameObject coin;
-
+    
+    [Space(15)]
     public GameObject secondMarbble;
-    public Transform marbblePositionGeneration;
     public GameObject marbbleParent;
+    public Transform marbblePositionGeneration;
 
     private void Awake()
     {
@@ -59,6 +60,9 @@ public class GameController : MonoBehaviour
     {        
         actualLevel = 1;
         allLevelsEnd = false;
+
+        canGetCoin = true;
+        canGetMarbble = true;
     }
 
     private void Update()
@@ -120,9 +124,6 @@ public class GameController : MonoBehaviour
     {
         victoryUI.SetActive(true);
         allLevelsEnd = true;
-        
-        canGetCoin = true;
-        canGetMarbble = true;
 
         GiveCoin();
         GiveSecondMarbble();

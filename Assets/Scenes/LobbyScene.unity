@@ -404,6 +404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0cd66430092684681db40d349810c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDeleteKeys: 0
+  canSeeRewards: 0
 --- !u!1 &217177275
 GameObject:
   m_ObjectHideFlags: 0

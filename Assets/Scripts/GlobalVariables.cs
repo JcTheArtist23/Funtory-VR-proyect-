@@ -71,6 +71,10 @@ public class GlobalVariables : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.D) && canDeleteKeys == true)
         {
             PlayerPrefs.DeleteAll();
+
+            coins = 0;
+            firstMarble = 0;
+            secondMarble = 0;
         }
     }
 }

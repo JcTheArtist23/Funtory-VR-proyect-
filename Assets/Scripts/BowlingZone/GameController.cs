@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     public int numBolosToWin4;              //Número de bolos totales para tirar y obtener la victoria en el nivel 4
     public int numBolosToWin5;              //Número de bolos totales para tirar y obtener la victoria en el nivel 5
     private int numBolosToWin;              //Número de bolos totales para tirar y obtener la victoria en el nivel actual
-
+    
     [Header("BOWLING GAMEOBJECTS")]
     public GameObject level1;               //Nivel de bolos 1
     public GameObject level2;               //Nivel de bolos 2
@@ -104,7 +104,6 @@ public class GameController : MonoBehaviour
         {
             Victory();
         }
-
     }
 
     private void LevelEnd()
@@ -158,6 +157,7 @@ public class GameController : MonoBehaviour
     {
         if(GlobalVariables.canSaveCoin == false && GlobalVariables.canSaveSecondMarble == false)
         {
+            victoryUI.SetActive(false);
             //SceneManager.LoadScene("LobbyScene");
         }
     }

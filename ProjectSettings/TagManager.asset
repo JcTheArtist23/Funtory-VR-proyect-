@@ -9,6 +9,7 @@ TagManager:
   - DestructionZone
   - AccelerationZone
   - StoppingZone
+  - RespawnZone
   layers:
   - Default
   - TransparentFX

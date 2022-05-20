@@ -8,10 +8,12 @@ public class Bolo : MonoBehaviour
     public bool isSprawled;                     //El bolo se ha tumbado?
 
     private Rigidbody rbBolo;
+    private AudioSource sound;
 
     private void Awake()
     {
         rbBolo = GetComponent<Rigidbody>();
+        sound = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -33,10 +35,12 @@ public class Bolo : MonoBehaviour
         if(bolo.gameObject.tag == "Bolo")
         {
             isSprawled = true;
+            sound.Play();
         }
         else if(bolo.gameObject.tag == "Bola de Bolos")
         {
             isSprawled = true;
+            sound.Play();
         }
     }
 

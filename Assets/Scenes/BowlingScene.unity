@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a60204a99a406844dbb2da94cf1db3bb, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b7a82ef0e0bf94c4d83e3848ffa80d8a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1969,6 +1969,7 @@ MonoBehaviour:
   numBolosToWin3: 7
   numBolosToWin4: 8
   numBolosToWin5: 10
+  returnTime: 3
   level1: {fileID: 1259346573}
   level2: {fileID: 298322704}
   level3: {fileID: 1178928513}
@@ -2001,7 +2002,7 @@ MonoBehaviour:
   - {fileID: 5525769629157939789, guid: 497fa58476b4b8642a44fb98106d86d6, type: 3}
   - {fileID: 4830942297205005862, guid: 75dbf771f46afa34798051e40632e017, type: 3}
   - {fileID: 988082399173685433, guid: 0ba9ef70b5c18414084968be9b387e31, type: 3}
-  bowlingBallsParent: {fileID: 73683107}
+  bowlingBallsParent: {fileID: 1878795735}
   generationPosition: {fileID: 2705351892165546194}
 --- !u!114 &667674315
 MonoBehaviour:
@@ -2063,7 +2064,7 @@ PrefabInstance:
     - target: {fileID: 4830942297205005862, guid: 75dbf771f46afa34798051e40632e017,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830942297205005863, guid: 75dbf771f46afa34798051e40632e017,
         type: 3}
@@ -3714,12 +3715,12 @@ PrefabInstance:
     - target: {fileID: 1090350470286418361, guid: 423a8dc6b427e67429d90cd4bce0f214,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.947
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 1090350470286418361, guid: 423a8dc6b427e67429d90cd4bce0f214,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 292.5
+      value: 293.19
       objectReference: {fileID: 0}
     - target: {fileID: 1090350470286418361, guid: 423a8dc6b427e67429d90cd4bce0f214,
         type: 3}
@@ -4897,6 +4898,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 484679810}
     m_Modifications:
+    - target: {fileID: 2919485757839583718, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 338
+      objectReference: {fileID: 0}
     - target: {fileID: 2919485758113177602, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
         type: 3}
       propertyPath: m_Name
@@ -5006,6 +5012,33 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919485758422948908, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919485758422948908, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919485758422948911, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e3a793ca99b7f6d4882333ae8534292f,
+        type: 3}
+    - target: {fileID: 5906609415023944834, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c56d1eb9b0f2879499c93ea4dcfca3e2,
+        type: 3}
+    - target: {fileID: 8842902257014467041, guid: 9bc2ae3305f0d2541b7270efcfd4a568,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 338
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc2ae3305f0d2541b7270efcfd4a568, type: 3}

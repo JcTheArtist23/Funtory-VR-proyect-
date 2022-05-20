@@ -34,6 +34,16 @@ public class ScoreUI : MonoBehaviour
                 totalMarbbles = 2;
             }
         }
+
+        if(GlobalVariables.secondMarble == 1)
+        {
+            totalMarbbles = 1;
+
+            if(GlobalVariables.firstMarble == 1)
+            {
+                totalMarbbles = 2;
+            }
+        }
     }
 
     private void UI()

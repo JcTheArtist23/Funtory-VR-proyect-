@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneSelectorController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class SceneSelectorController : MonoBehaviour
     [Header("SCENE SELECTION")]
     public int sceneSelected;                   //Cual es el minijuego seleccionad0 (1 = Bowling    /   2 = Golf    /   3 = Other)
     public float sceneSelectedTime;             //Tiempo hasta que se pueden seleccionar los minijuegos
-    public bool canSelectScene;
+    public bool canSelectScene;                 //Se pueden seleccionar los minijuegos?
     
     [Header("UI GAMEOBJECTS")]
     public GameObject sceneSelector;            //Fondo de la UI
@@ -24,17 +25,24 @@ public class SceneSelectorController : MonoBehaviour
     public GameObject golfSelected;             //Efecto de cuando el minijuego "Golf" está seleccionada
     public GameObject otherSelected;            //Efecto de cuando el minijuego "Other" está seleccionada
 
+    [Header("DEVELOPING")]
+    public float restartUITime;                //Tiempo que tarda en restablecer la UI
+    public GameObject developingUI;             //UI que aparece al seleccionar un minijuego en dessarrollo
+
     private void Awake()
     {
         sceneSelector.SetActive(false);
         bowling.SetActive(false);
         golf.SetActive(false);
         other.SetActive(false);
+        developingUI.SetActive(false);
     }
 
     private void Start()
     {
         canSelectScene = false;
+        sceneSelected = 1;
+
         StartCoroutine("SetActiveUI_SceneSelector");
     }
 
@@ -89,11 +97,21 @@ public class SceneSelectorController : MonoBehaviour
             sceneSelected = 3;
         }
 
-        sceneSelectedEffect();
+        if(canSelectScene == true)
+        {
+            ChangeSelectScene();
+            SceneSelectedEffect();
+            SceneTeleport();
+        }
+    }
+
+    private void ChangeSelectScene()
+    {
+        
     }
 
     //Efecto para que se vea cual de los minijuegos está seleccionado
-    private void sceneSelectedEffect()
+    private void SceneSelectedEffect()
     {
         if(canSelectScene == true)
         {
@@ -116,5 +134,46 @@ public class SceneSelectorController : MonoBehaviour
                 otherSelected.SetActive(true);
             }
         }           
+    }
+
+    private void SceneTeleport()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            if(sceneSelected == 1)
+            {
+                SceneManager.LoadScene("BowlingScene");
+            }
+            else if(sceneSelected ==2)
+            {
+                DevelopingUI();
+            }
+            else if(sceneSelected == 3)
+            {
+                DevelopingUI();
+            }
+        }
+    }
+
+    private void DevelopingUI()
+    {
+        developingUI.SetActive(true);
+
+        bowling.SetActive(false);
+        golf.SetActive(false);
+        other.SetActive(false);
+        
+        StartCoroutine("RestartUI");
+    }
+
+    private IEnumerator RestartUI()
+    {
+        yield return new WaitForSeconds(restartUITime);
+
+        developingUI.SetActive(false);  
+
+        bowling.SetActive(true);
+        golf.SetActive(true);
+        other.SetActive(true);       
     }
 }

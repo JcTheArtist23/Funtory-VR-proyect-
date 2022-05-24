@@ -6,21 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class VideoController : MonoBehaviour
 {
-    private float videoDuration = 5f;
+    public float videoDuration;
 
     private VideoPlayer video;
-    private AudioSource audio;
 
     private void Awake()
     {
         video = GetComponent<VideoPlayer>();
-        audio = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
         video.Play();
-        audio.Play();
         
         StartCoroutine("LoadLobbyScene");
     }

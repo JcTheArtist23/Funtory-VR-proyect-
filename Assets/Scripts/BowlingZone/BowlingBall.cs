@@ -8,10 +8,12 @@ public class BowlingBall : MonoBehaviour
     public float accelerationForce;             //Fuerza que recibe la bola de bolos al estar en la pista de bolos
 
     private Rigidbody rbBall;
+    private AudioSource audioBall;
 
     private void Awake()
     {
         rbBall = GetComponent<Rigidbody>();
+        audioBall = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -19,12 +21,17 @@ public class BowlingBall : MonoBehaviour
         rbBall.AddForce(new Vector3(1, 0, 0) * generationForce * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider destruction)
+    private void OnTriggerEnter(Collider ball)
     {
-        if(destruction.gameObject.tag == "DestructionZone")
+        if(ball.gameObject.tag == "DestructionZone")
         {
             Destroy(this.gameObject);
             BowlingBallsGeneration.areDestroyed = true;
+        }
+
+        if(ball.gameObject.tag == "AccelerationZone")
+        {
+            audioBall.Play();
         }
     }
 

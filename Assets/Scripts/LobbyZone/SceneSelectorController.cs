@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneSelectorController : MonoBehaviour
 {
-    public float setActiveTime1;                //Tiempo para que aparezca el fondo de la UI
-    public float setActiveTime2;                //Tiempò para que aparezca cada una de las imagenes de los minijuegos
+    [Header("SET ACTIVE TIMES")]
+    public float setActiveTimeBackground;       //Tiempo para que aparezca el fondo de la UI
+    public float setActiveTimeImages;           //Tiempo para que aparezca cada una de las imagenes de los minijuegos
+    public float setActiveTimeTitle;            //Tiempo para que aparezca el título de la UI
 
     [Header("SCENE SELECTION")]
     public int sceneSelected;                   //Cual es el minijuego seleccionad0 (1 = Bowling    /   2 = Golf    /   3 = Other)
@@ -19,15 +21,12 @@ public class SceneSelectorController : MonoBehaviour
     public GameObject bowling;                  //Imagen del minijuego "Bowling"
     public GameObject golf;                     //Imagen del minijuego "Golf"
     public GameObject other;                    //Imagen del minijuego "Other"
+    public GameObject titleSceneSelector;       //Titulo de la selección de minijuegos
 
     [Header("UI GAMEOBJECTS 2")]
     public GameObject bowlingSelected;          //Efecto de cuando el minijuego "Bowling" bolos está seleccionada
     public GameObject golfSelected;             //Efecto de cuando el minijuego "Golf" está seleccionada
     public GameObject otherSelected;            //Efecto de cuando el minijuego "Other" está seleccionada
-
-    [Header("DEVELOPING")]
-    public float restartUITime;                //Tiempo que tarda en restablecer la UI
-    public GameObject developingUI;             //UI que aparece al seleccionar un minijuego en dessarrollo
 
     private void Awake()
     {
@@ -35,7 +34,7 @@ public class SceneSelectorController : MonoBehaviour
         bowling.SetActive(false);
         golf.SetActive(false);
         other.SetActive(false);
-        developingUI.SetActive(false);
+        titleSceneSelector.SetActive(false);
     }
 
     private void Start()
@@ -49,7 +48,7 @@ public class SceneSelectorController : MonoBehaviour
     //Aparce el fondo de la UI 
     private IEnumerator SetActiveUI_SceneSelector()
     {
-        yield return new WaitForSeconds(setActiveTime1);
+        yield return new WaitForSeconds(setActiveTimeBackground);
         sceneSelector.SetActive(true);
         StartCoroutine("SetActiveUI_Bowling");
     }
@@ -57,7 +56,7 @@ public class SceneSelectorController : MonoBehaviour
     //Aparce la imagen del minijuego "Bowling"
     private IEnumerator SetActiveUI_Bowling()
     {
-        yield return new WaitForSeconds(setActiveTime2);
+        yield return new WaitForSeconds(setActiveTimeImages);
         bowling.SetActive(true);
         StartCoroutine("SetActiveUI_Golf");
     }
@@ -65,7 +64,7 @@ public class SceneSelectorController : MonoBehaviour
     //Aparce la imagen del minijuego "Golf"
     private IEnumerator SetActiveUI_Golf()
     {
-        yield return new WaitForSeconds(setActiveTime2);
+        yield return new WaitForSeconds(setActiveTimeImages);
         golf.SetActive(true);
         StartCoroutine("SetActiveUI_Other");
     }
@@ -73,8 +72,17 @@ public class SceneSelectorController : MonoBehaviour
     //Aparce la imagen del minijuego "Other"
     private IEnumerator SetActiveUI_Other()
     {
-        yield return new WaitForSeconds(setActiveTime2);
+        yield return new WaitForSeconds(setActiveTimeImages);
         other.SetActive(true);
+        StartCoroutine("SetActiveUI_Title");
+
+    }
+
+    //Aparece el título del seleccionador de la UI
+    private IEnumerator SetActiveUI_Title()
+    {
+        yield return new WaitForSeconds(setActiveTimeTitle);
+        titleSceneSelector.SetActive(true);
 
         StartCoroutine("SelectionScene");
     }
@@ -146,34 +154,12 @@ public class SceneSelectorController : MonoBehaviour
             }
             else if(sceneSelected ==2)
             {
-                DevelopingUI();
+                
             }
             else if(sceneSelected == 3)
             {
-                DevelopingUI();
+                
             }
         }
-    }
-
-    private void DevelopingUI()
-    {
-        developingUI.SetActive(true);
-
-        bowling.SetActive(false);
-        golf.SetActive(false);
-        other.SetActive(false);
-        
-        StartCoroutine("RestartUI");
-    }
-
-    private IEnumerator RestartUI()
-    {
-        yield return new WaitForSeconds(restartUITime);
-
-        developingUI.SetActive(false);  
-
-        bowling.SetActive(true);
-        golf.SetActive(true);
-        other.SetActive(true);       
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9120171207049607945}
   - component: {fileID: 272351722004672559}
   - component: {fileID: 2372844687781116061}
-  - component: {fileID: 2563756457208272449}
+  - component: {fileID: 7002501941640781619}
   m_Layer: 0
   m_Name: GolfBall
   m_TagString: Untagged
@@ -113,7 +113,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2563756457208272449
+--- !u!114 &7002501941640781619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,8 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5842e44f27621074781f4b9d2f41dfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comparePositions: 0
+  canComparePositions: 0
   firstPosition: {x: 0, y: 0, z: 0}
   secondPosition: {x: 0, y: 0, z: 0}
-  thirdPosition: {x: 0, y: 0, z: 0}
   respawnPosition: {x: 0, y: 0, z: 0}

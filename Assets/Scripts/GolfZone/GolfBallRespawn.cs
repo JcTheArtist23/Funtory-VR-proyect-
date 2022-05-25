@@ -4,61 +4,58 @@ using UnityEngine;
 
 public class GolfBallRespawn : MonoBehaviour
 {
-    public bool canComparePositions;           //Se puede comparar las posiciones
     [Space(15)]
-    public Vector3 firstPosition;           //Posición de la pelota en un instante
-    public Vector3 secondPosition;          //Posición de la pelota un instante después
+    public float respawnX;
+    public float respawnY;
+    public float respawnZ;
     [Space(15)]
-    public Vector3 respawnPosition;         //Posición de la pelota al respawnear
+    public bool canSavePosition;
+
+    private float pauseTime;
+    private float nextTime;
 
     private void Start()
     {
-        canComparePositions = true;
+        pauseTime = 1f;
+        nextTime = 0;
     }
 
     private void Update()
     {
-        if(canComparePositions = true)
+        if(canSavePosition == true)
         {
-            canComparePositions = false;
-            firstPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+            if(Time.time > nextTime)
+            {
+                nextTime = Time.time + pauseTime;
+                        
+                float _respawnX = this.gameObject.transform.position.x;
+                float _respawnY = this.gameObject.transform.position.y;
+                float _respawnZ = this.gameObject.transform.position.z;
 
-            StartCoroutine("SecondPosition");
+                respawnX = _respawnX;
+                respawnY = _respawnY;
+                respawnZ = _respawnZ;
+            }
         }
+    }
 
-        if(firstPosition == secondPosition)
+    private void OnTriggerStay(Collider playing)
+    {
+        if(playing.gameObject.tag == "playingZone")
         {
-            SetRespawnPosition();
+            canSavePosition = true;
         }
         else
         {
-            firstPosition = new Vector3(0, 0, 0);
-            secondPosition = new Vector3(0, 0, 0);
+            canSavePosition = false;
         }
-    }
-
-    private IEnumerator SecondPosition()
-    {
-        yield return new WaitForSeconds(3);
-        secondPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        canComparePositions = true;
-    }
-
-    private void SetRespawnPosition()
-    {
-        respawnPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
     private void OnTriggerEnter(Collider respawn)
     {
         if(respawn.gameObject.tag == "RespawnZone")
         {
-            Respawn();
+            
         }
-    }
-
-    private void Respawn()
-    {
-
     }
 }

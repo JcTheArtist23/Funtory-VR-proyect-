@@ -35,20 +35,6 @@ public class BowlingBall : MonoBehaviour
             rbBall.constraints = RigidbodyConstraints.None;
             rbBall.useGravity = true;
         }
-        
-        ThrowBall();
-    }
-
-    private void ThrowBall()
-    {
-        if(GrabController.canThrowBall == true)
-        {
-            if(Input.GetKey(KeyCode.Space))
-            {
-                rbBall.AddForce(transform.forward * throwForce * Time.deltaTime);
-                GrabController.canThrowBall = false;
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider ball)

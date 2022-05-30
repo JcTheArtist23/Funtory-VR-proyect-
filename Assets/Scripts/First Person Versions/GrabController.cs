@@ -6,18 +6,13 @@ public class GrabController : MonoBehaviour
 {
     public float raycastRange;
     public float throwForce;
-    public static bool canThrowBall;
 
     private GameObject grabParent;
+    private Animator anim;
 
     private void Awake()
     {
         grabParent = GameObject.Find("GrabParent");
-    }
-
-    private void Start()
-    {
-        canThrowBall = false;
     }
 
     private void Update()
@@ -44,9 +39,16 @@ public class GrabController : MonoBehaviour
                     float grabZ = grabParent.transform.position.z;
 
                     hit.transform.position = new Vector3(grabX, grabY, grabZ);
-                    canThrowBall = true;
                 }
             }
+        }
+    }
+
+    private void ThrowBall()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            GetComponent<Animator>().SetBool("canThrow", true);
         }
     }
 }

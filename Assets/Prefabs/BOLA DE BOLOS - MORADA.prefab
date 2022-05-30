@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -1113890585905431415}
   m_Layer: 0
   m_Name: BOLA DE BOLOS - MORADA
-  m_TagString: Bola de Bolos
+  m_TagString: BowlingBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

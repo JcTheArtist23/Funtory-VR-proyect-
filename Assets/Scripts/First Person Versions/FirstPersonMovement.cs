@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonMovement : MonoBehaviour
 {
     public float speedPlayer;
 
@@ -18,6 +18,8 @@ public class FirstPersonController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector3(vertical, 0, horizontal) * speedPlayer * Time.deltaTime;
+        Vector3 movement = transform.right * horizontal + transform.forward * vertical;
+
+        rb.velocity = movement * speedPlayer * Time.deltaTime;
     }
 }

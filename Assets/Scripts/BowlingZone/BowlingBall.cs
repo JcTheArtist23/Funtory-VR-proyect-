@@ -6,6 +6,7 @@ public class BowlingBall : MonoBehaviour
 {
     public float generationForce;               //Fuerza que recibe la bola de bolos al generarse para moverse en la máquina bolos
     public float accelerationForce;             //Fuerza que recibe la bola de bolos al estar en la pista de bolos
+    private float throwForce = 500f;
 
     private Rigidbody rbBall;
     private AudioSource audioBall;
@@ -19,6 +20,35 @@ public class BowlingBall : MonoBehaviour
     private void Start()
     {
         rbBall.AddForce(new Vector3(1, 0, 0) * generationForce * Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        if(gameObject.transform.parent != null)
+        {
+            rbBall.constraints = RigidbodyConstraints.FreezePosition;
+            rbBall.constraints = RigidbodyConstraints.FreezeRotation;
+            rbBall.useGravity = false;
+        }
+        else
+        {
+            rbBall.constraints = RigidbodyConstraints.None;
+            rbBall.useGravity = true;
+        }
+        
+        ThrowBall();
+    }
+
+    private void ThrowBall()
+    {
+        if(GrabController.canThrowBall == true)
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                rbBall.AddForce(transform.forward * throwForce * Time.deltaTime);
+                GrabController.canThrowBall = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider ball)

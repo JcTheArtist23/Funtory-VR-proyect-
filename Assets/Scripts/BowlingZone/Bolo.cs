@@ -37,7 +37,7 @@ public class Bolo : MonoBehaviour
             isSprawled = true;
             sound.Play();
         }
-        else if(bolo.gameObject.tag == "Bola de Bolos")
+        else if(bolo.gameObject.tag == "BowlingBall")
         {
             isSprawled = true;
             sound.Play();

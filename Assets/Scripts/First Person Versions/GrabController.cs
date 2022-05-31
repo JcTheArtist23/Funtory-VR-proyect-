@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GrabController : MonoBehaviour
 {
-    public float raycastRange;
-    public float throwForce;
+    public float raycastRange;                  //Rango máximo en que se puede coger la bola de bolos
+    public static bool throwAct;                //Se puede disparar la bola de bolos?
+    public static bool restartThrow;             //Se puede reiniciar las acciones de el disparo de la bola de bolos?      
+    private bool throwAnim;                     //Se puede activar la animación de la mano?
 
     private GameObject grabParent;
+    private GameObject initialPos;
+    private GameObject throwPos;
     private Animator anim;
 
     private void Awake()
     {
         grabParent = GameObject.Find("GrabParent");
+        initialPos = GameObject.Find("InitialPosition");
+        throwPos = GameObject.Find("ThrowPosition");
+    }
+
+    private void Start()
+    {
+       throwAnim = false;
+       throwAct = false;
+       restartThrow = false;
     }
 
     private void Update()
@@ -39,16 +52,50 @@ public class GrabController : MonoBehaviour
                     float grabZ = grabParent.transform.position.z;
 
                     hit.transform.position = new Vector3(grabX, grabY, grabZ);
+
+                    throwAnim = true;
                 }
             }
         }
+
+        ThrowAnim();
+        RestartThrowActions();
     }
 
-    private void ThrowBall()
+    private void ThrowAnim()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if(throwAnim == true)
         {
-            GetComponent<Animator>().SetBool("canThrow", true);
+            float throwPosX = throwPos.transform.position.x;
+            float throwPosY = throwPos.transform.position.y;
+            float throwPosZ = throwPos.transform.position.z;
+
+            gameObject.transform.position = new Vector3(throwPosX, throwPosY, throwPosZ);
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                GetComponent<Animator>().SetBool("canThrow", true);
+                //throwAnim = false;
+                throwAct = true;
+            }
+        }
+        else
+        {
+            float initialPosX = initialPos.transform.position.x;
+            float initialPosY = initialPos.transform.position.y;
+            float initialPosZ = initialPos.transform.position.z;
+
+            gameObject.transform.position = new Vector3(initialPosX, initialPosY, initialPosZ);
+        }
+    }
+
+    private void RestartThrowActions()
+    {
+        if(restartThrow == true)
+        {
+            throwAnim = false;
+            GetComponent<Animator>().SetBool("canThrow", false);
+            restartThrow = false;
         }
     }
 }

@@ -129,7 +129,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -225,6 +225,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationForce: 2350
   accelerationForce: 650
+  throwForce: 15000
+  gravity: 3750
+  animTime: 2
+  ballStop: 0
 --- !u!114 &5548271007473778290
 MonoBehaviour:
   m_ObjectHideFlags: 0

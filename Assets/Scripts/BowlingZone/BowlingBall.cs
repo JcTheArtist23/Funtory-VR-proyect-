@@ -11,6 +11,7 @@ public class BowlingBall : MonoBehaviour
     public float animTime;                      //Tiempo que dura la animación de la mano
     public bool ballStop;                       //La bola de bolos se teletransporta continuamente junto en la mano?
 
+    private GameObject firstPersonCharacter;
     private GameObject hand;
     private GameObject ballsParent;
     private Rigidbody rbBall;
@@ -18,6 +19,7 @@ public class BowlingBall : MonoBehaviour
 
     private void Awake()
     {
+        firstPersonCharacter = GameObject.Find("FirstPersonCharacter");
         hand = GameObject.Find("GrabController");
         ballsParent = GameObject.Find("BowlingBallsParent");
 
@@ -67,8 +69,8 @@ public class BowlingBall : MonoBehaviour
         
         rbBall.useGravity = true;        
         gameObject.transform.parent = ballsParent.transform;
-        
-        rbBall.AddForce(new Vector3(-1, 0, 0) * throwForce * Time.deltaTime);
+
+        rbBall.AddForce(firstPersonCharacter.transform.forward * throwForce * Time.deltaTime);
         rbBall.AddForce(new Vector3(0, -1, 0) * gravity * Time.deltaTime);
     }
 

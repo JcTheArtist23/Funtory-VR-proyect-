@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
 
     [Header("UI")]
     public GameObject victoryUI;            //UI que aparece al ganar todos los niveles
+    public GameObject scoreUI;            //UI que muestra las puntuaciones
 
     [Header("REWARDS")]
     public GameObject statue;
@@ -124,7 +125,7 @@ public class GameController : MonoBehaviour
 
     private void Victory()
     {
-        victoryUI.SetActive(true);
+        //victoryUI.SetActive(true);
         allLevelsEnd = true;
 
         GiveCoin();
@@ -159,7 +160,8 @@ public class GameController : MonoBehaviour
     private IEnumerator ReturnToLobbyTime()
     {
         yield return new WaitForSeconds(returnTime);
-        ReturnToLobby();
+        //ReturnToLobby();
+        VictoryUI();
     }
 
     private void ReturnToLobby()
@@ -169,5 +171,11 @@ public class GameController : MonoBehaviour
             victoryUI.SetActive(false);
             SceneManager.LoadScene("LobbyScene");
         }
+    }
+
+    private void VictoryUI()
+    {
+        victoryUI.SetActive(true);
+        scoreUI.SetActive(false);
     }
 }

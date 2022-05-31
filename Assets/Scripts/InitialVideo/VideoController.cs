@@ -13,6 +13,8 @@ public class VideoController : MonoBehaviour
     private void Awake()
     {
         video = GetComponent<VideoPlayer>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -25,6 +27,6 @@ public class VideoController : MonoBehaviour
     private IEnumerator LoadLobbyScene()
     {
         yield return new WaitForSeconds(videoDuration);
-        SceneManager.LoadScene("LobbyScene");
+        SceneManager.LoadScene("LobbySceneFirstPerson");
     }
 }
